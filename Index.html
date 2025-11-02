@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bubbling Brooke ⚡</title>
+
+  <style>
+    /* 🌌 BACKGROUND */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: radial-gradient(circle at top right, #020202, #000);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ⚡ MOVING GRID */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0,255,255,0.1) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: moveGrid 30s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveGrid {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 60px 60px, 60px 60px; }
+    }
+
+    /* 🏆 HEADER */
+    header {
+      text-align: center;
+      padding: 80px 20px;
+      border-bottom: 3px solid #00ffff;
+      box-shadow: 0 0 40px #00ffff55, 0 0 60px #ff00ff33, 0 0 80px #00ff0033;
+      position: relative;
+      z-index: 1;
+      background: #000000cc;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff00, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowText 3s linear infinite;
+      letter-spacing: 2px;
+    }
+
+    @keyframes glowText {
+      0% { text-shadow: 0 0 10px #00ffff; }
+      33% { text-shadow: 0 0 30px #ff00ff; }
+      66% { text-shadow: 0 0 30px #00ff00; }
+      100% { text-shadow: 0 0 10px #00ffff; }
+    }
+
+    header h2 {
+      color: #aee6ff;
+      font-weight: 400;
+      text-shadow: 0 0 10px #00bfff;
+    }
+
+    /* 🧱 SHARP BOX SECTIONS (different colors) */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 950px;
+      margin: 70px auto;
+      padding: 40px;
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 50px #00ffff66;
+    }
+
+    /* Alternate box colors with splashes */
+    #about {
+      background: linear-gradient(145deg, #031f2e, #002b36);
+      border-color: #00ffff;
+      box-shadow: 0 0 40px #00ffff55, 0 0 60px #ff00ff22;
+    }
+
+    #soccer {
+      background: linear-gradient(145deg, #001a1a, #003333);
+      border-color: #00ff88;
+      box-shadow: 0 0 40px #00ff8855, 0 0 60px #00ffff22;
+    }
+
+    #facts {
+      background: linear-gradient(145deg, #1a001a, #330033);
+      border-color: #ff00ff;
+      box-shadow: 0 0 40px #ff00ff55, 0 0 60px #00ff0022;
+    }
+
+    #legends {
+      background: linear-gradient(145deg, #001a00, #003300);
+      border-color: #00ff00;
+      box-shadow: 0 0 40px #00ff0055, 0 0 60px #ff00ff22;
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #00ffff;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px #00ffff;
+      border-bottom: 2px solid #0099ff;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+
+    #soccer h2 {
+      color: #00ff88;
+      text-shadow: 0 0 12px #00ff88;
+      border-bottom: 2px solid #00ff88;
+    }
+
+    #facts h2 {
+      color: #ff00ff;
+      text-shadow: 0 0 12px #ff00ff;
+      border-bottom: 2px solid #ff00ff;
+    }
+
+    #legends h2 {
+      color: #00ff00;
+      text-shadow: 0 0 12px #00ff00;
+      border-bottom: 2px solid #00ff00;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* 🖼 IMAGE GALLERY */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 25px #00ffff33;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+      border-color: #ff00ff;
+      box-shadow: 0 0 50px #ff00ffcc;
+    }
+
+    /* ✨ QUOTES */
+    blockquote {
+      margin: 25px 0;
+      font-style: italic;
+      color: #aee6ff;
+      border-left: 5px solid #00ffff;
+      padding-left: 15px;
+      background: #0a0a0a;
+      box-shadow: inset 0 0 15px #00ffff44;
+      text-shadow: 0 0 6px #00bfff88;
+    }
+
+    /* 🌐 LINKS */
+    a {
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      color: #ff00ff;
+      text-shadow: 0 0 15px #ff00ff;
+    }
+
+    /* ⚽ BUTTON */
+    button {
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff00);
+      border: 2px solid #00ffff;
+      padding: 12px 25px;
+      color: #000;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 0;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: 0.3s ease;
+      box-shadow: 0 0 20px #00ffff44;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      border-color: #ff00ff;
+      box-shadow: 0 0 40px #ff00ff99, 0 0 60px #00ff0099;
+      color: #000;
+    }
+
+    /* 📦 FACT CARDS */
+    .fact-card {
+      background: rgba(255, 0, 255, 0.05);
+      border-left: 4px solid #ff00ff;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 0;
+      box-shadow: 0 0 15px #ff00ff22;
+    }
+
+    .fact-card h3 {
+      color: #ff00ff;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      text-shadow: 0 0 8px #ff00ff;
+    }
+
+    /* 🎮 PLAYER GRID */
+    .player-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .player-card {
+      background: rgba(0, 255, 0, 0.05);
+      border: 2px solid #00ff00;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 20px #00ff0033;
+    }
+
+    .player-card:hover {
+      transform: translateY(-8px);
+      border-color: #00ffff;
+      box-shadow: 0 0 40px #00ffff88, 0 0 60px #ff00ff44;
+    }
+
+    .player-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+    }
+
+    .player-card .country {
+      font-style: italic;
+      color: #aee6ff;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .player-card img {
+      width: 100%;
+      max-width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border: 2px solid #00ff00;
+      margin-bottom: 15px;
+      box-shadow: 0 0 20px #00ff0033;
+    }
+
+    /* 👟 FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #000;
+      color: #aee6ff;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      border-top: 3px solid #00ffff;
+      box-shadow: 0 0 40px #00ffff55, 0 0 60px #ff00ff33, 0 0 80px #00ff0033;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Bubbling Brooke</h1>
+    <h2>INFORMATION ON Brooke Chavez:</h2>
+  </header>
+
+  <section id="about">
+    <p>Name:Brooke Chavez</p>
+    <p>Age: 12 years, only 3 months until my birthday!</p>
+    <p>Hobbies: Playing soccer, listening to music, dancing, reading, and hanging out with my friends .</p>
+    <p>I love seeing dogs dress up for halloween and this dog dressed up as a "hot dog" was hilarious.</p>
+
+    <div class="gallery">
+      <img src="https://tse3.mm.bing.net/th?id=OIP.NfjD699rKBVjDf4KXsdKGQHaHa&pid=Api&P=0&h=180" alt="Dog in costume">
+      <img src="https://tse1.mm.bing.net/th?id=OIP.LpxB8Nq-6MpstXQ2UhVvSAAAAA&pid=Api&P=0&h=180" alt="Dog in costume">
+      <img src="https://tse4.mm.bing.net/th?id=OIP.ATDWHKz_YiAKi9JqSPwb-AHaGH&pid=Api&P=0&h=180" alt="Dog in costume">
+      <img src="https://tse1.mm.bing.net/th?id=OIP.zD4BiqDJ5yAxoGtVMQXIbAHaEK&pid=Api&P=0&h=180" alt="Dog in costume">
+    </div>
+  </section>
+
+  <section id="soccer">
+    <h2>BROOKE'S SOCCER LIFE PAGE</h2>
+    <h1 style="color: aqua; text-align: center;">BROOKE's SOCCER JOURNEY</h1>
+    <h2 style="text-align: center;">This is Brooke</h2>
+    <h1 class="blue-it" style="text-align: center;">I LOVE SOCCER!</h1>
+
+    <p>I started soccer when I was 3 years old. I saw my brother playing and wanted to try too. I immediatly fell in love and have played for countless clubs and teams over 
+      my 9 years of playing. <b>I played for reck teams at first and got better and better during covid and now I am on one the top academy in North Carolina playing a year up!</b>
+      It has been a fun and wild journey and my dream is to eventually go pro even if I don't make a lot of money. Down below are two
+      links that are about my two favorite players.<i>Alyssa Tompson and Messi.</i> They are both small and have similiar attributes like mine. <blockquote>Today you are you, that is truer than true. there is no one alive who is youer than you </blockquote>
+      <blockquote>Why don't skeletons fight each other? Because they don't have the guts"</blockquote>
+    </p>
+
+    <div class="gallery">
+      <img src="https://media.gettyimages.com/id/1485913525/photo/carson-california-alyssa-thompson-gets-ready-to-take-a-corner-kick-during-a-game-between-north.jpg?s=612x612&w=0&k=20&c=xT9xV3QzWbUVpRmOjBaNgD14rGEeF8InZu6WT7uSeVg=" alt="Alyssa Thompson soccer">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.CjuJhR9wS4jD9R183-cdDwHaEK?pid=Api&P=0&h=180" alt="Soccer image">
+    </div>
+
+    <p>
+      <a href="https://en.wikipedia.org/wiki/Supercopa_de_Espa%C3%B1a" target="_blank">Supercopa de España</a><br>
+      <a href="https://wikibiography.in/alyssa-thompson-wiki-bio/" target="_blank">Alyssa Thompson Wiki</a>
+    </p>
+
+    <button onclick="showFact()">⚽ Show Soccer Fact</button>
+    <p id="fact"></p>
+  </section>
+
+  <section id="facts">
+    <h2>⚽ AMAZING SOCCER FACTS</h2>
+    
+    <div class="fact-card">
+      <h3>The World's Most Popular Sport</h3>
+      <p>Over 4 billion people around the world consider themselves soccer fans, making it the most watched and played sport globally.</p>
+    </div>
+    
+    <div class="fact-card">
+      <h3>Fastest Goal Ever</h3>
+      <p>The fastest goal in professional soccer was scored in just 2.8 seconds by Ricardo Olivera in 2013, playing for Rio Negro against Soriano in Uruguay.</p>
+    </div>
+    
+    <div class="fact-card">
+      <h3>The Original Ball</h3>
+      <p>Early soccer balls were made from inflated pig bladders! Modern soccer balls are made with synthetic materials and must be between 27-28 inches in circumference.</p>
+    </div>
+    
+    <div class="fact-card">
+      <h3>World Cup Glory</h3>
+      <p>Brazil has won the FIFA World Cup a record 5 times (1958, 1962, 1970, 1994, 2002), more than any other nation.</p>
+    </div>
+  </section>
+
+  <section id="legends">
+    <h2>🌟 LEGENDARY SOCCER PLAYERS</h2>
+    
+    <div class="player-grid">
+      <div class="player-card">
+        <h3>Pelé</h3>
+        <p class="country">🇧🇷 Brazil</p>
+        <p>Widely considered the greatest player ever, Pelé scored over 1,000 professional goals and won three World Cups (1958, 1962, 1970).</p>
+      </div>
+      
+      <div class="player-card">
+        <h3>Lionel Messi</h3>
+        <p class="country">🇦🇷 Argentina</p>
+        <p>Winner of 8 Ballon d'Or awards and the 2022 World Cup, Messi is known for his incredible dribbling and goal-scoring ability.</p>
+      </div>
+      
+      <div class="player-card">
+        <h3>Cristiano Ronaldo</h3>
+        <p class="country">🇵🇹 Portugal</p>
+        <p>One of the highest goal scorers in history with over 800 career goals, known for his athleticism and powerful shooting.</p>
+      </div>
+      
+      <div class="player-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Diego_Maradona_in_1987.jpg/800px-Diego_Maradona_in_1987.jpg" alt="Diego Maradona">
+        <h3>Diego Maradona</h3>
+        <p class="country">🇦🇷 Argentina</p>
+        <p>Led Argentina to World Cup victory in 1986 and is remembered for his extraordinary skill and the famous "Hand of God" goal.</p>
+      </div>
+      
+      <div class="player-card">
+        <h3>Mia Hamm</h3>
+        <p class="country">🇺🇸 USA</p>
+        <p>Two-time World Cup champion and two-time Olympic gold medalist, she inspired a generation of female soccer players.</p>
+      </div>
+      
+      <div class="player-card">
+        <img src="https://media.gettyimages.com/id/1244078462/photo/alyssa-thompson-of-the-united-states-poses-for-a-portrait-during-the-official-fifa-womens.jpg?s=612x612&w=0&k=20&c=Bey7_zHBhvOJN4FnGMAmJR9CxqE_l6P0JlGX9-a4zRk=" alt="Alyssa Thompson">
+        <h3>Alyssa Thompson</h3>
+        <p class="country">🇺🇸 USA</p>
+        <p>Rising star who debuted for the U.S. Women's National Team at age 17. Known for her speed, technical skill, and being one of the youngest players in NWSL history.</p>
+      </div>
+      
+      <div class="player-card">
+        <h3>Johan Cruyff</h3>
+        <p class="country">🇳🇱 Netherlands</p>
+        <p>Pioneer of "Total Football," 3-time Ballon d'Or winner, and revolutionary both as a player and coach.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Brooke Chavez | "Play fierce. Stay kind."
+  </footer>
+
+  <script>
+    const facts = [
+      "Soccer is played by over 250 million people worldwide.",
+      "The average soccer player runs about 7 miles per game!",
+      "Alyssa Thompson debuted for the U.S. Women's National Team at age 17.",
+      "Messi scored his first professional goal at age 17.",
+      "The fastest red card in soccer history was given after just 2 seconds!"
+    ];
+
+    function showFact() {
+      const randomFact = facts[Math.floor(Math.random() * facts.length)];
+      document.getElementById('fact').innerText = randomFact;
+    }
+  </script>
+
+</body>
+</html>
